@@ -97,7 +97,7 @@ The first build takes a few minutes (compiling from source). Subsequent starts a
 
 The default image does not include LanceDB. To use `VECTOR_STORE_TYPE=lancedb`, build with `INSTALL_LANCEDB=true docker compose up -d --build`.
 
-This starts four services: **api** (port 8000), **deriver** (background worker), **database** (PostgreSQL with pgvector, port 5432 by default), and **redis** (port 6379 by default). All ports are bound to `127.0.0.1`. Redis caching is enabled by default. Set `POSTGRES_PORT` or `REDIS_PORT` in `.env` to use different host ports for PostgreSQL or Redis.
+This starts four services: **api** (port 8000), **deriver** (background worker), **database** (PostgreSQL with pgvector, host port 5433 by default), and **redis** (host port 6380 by default). The database and Redis ports are bound to `127.0.0.1`; the services continue to use their internal ports 5432 and 6379. Redis caching is enabled by default. Set `POSTGRES_PORT` or `REDIS_PORT` in `.env` to use different host ports.
 
 For development, uncomment the source mount and monitoring sections inside `docker-compose.yml` to enable live reload, Prometheus, and Grafana.
 
@@ -197,7 +197,7 @@ cp .env.template .env
 Edit `.env` — configure your LLM provider (see [LLM Setup](#llm-setup) above) and set the database connection:
 
 ```bash
-DB_CONNECTION_URI=postgresql+psycopg://postgres:postgres@localhost:5432/postgres
+DB_CONNECTION_URI=postgresql+psycopg://postgres:postgres@localhost:5433/postgres
 AUTH_USE_AUTH=false
 LOG_LEVEL=DEBUG
 ```
