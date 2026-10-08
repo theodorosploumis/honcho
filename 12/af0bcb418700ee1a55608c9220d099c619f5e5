@@ -1,0 +1,25 @@
+docker-compose.yml
+  s_cb465bf8fc79b0::t_ed4e20968c4ee8 147
+  s_cb465bf8fc79b0::t_7c1f6a5d53b5ea 149
+  s_cb465bf8fc79b0::t_b824994ce4ff3a 137-146,148,150
+docker-compose.yml.example
+  s_cb465bf8fc79b0::t_bee89b2b5c2ca6 144
+  s_cb465bf8fc79b0::t_cd5d41c260a68e 134-143,145,147
+  s_cb465bf8fc79b0::t_826d3418e0d217 146
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "12af0bcb418700ee1a55608c9220d099c619f5e5",
+  "prompts": {},
+  "sessions": {
+    "s_cb465bf8fc79b0": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a11bb2-2608-713d-8ca9-023851d7fc05",
+        "model": "gpt-6-luna"
+      },
+      "human_author": "Theodoros Ploumis <me@theodorosploumis.com>"
+    }
+  }
+}
