@@ -2,6 +2,8 @@ docker-compose.yml.example
   s_63992005a31e92::t_c78ebfb5fbb42a 139
 .env.template
   s_63992005a31e92::t_c78ebfb5fbb42a 299-301
+docs/v3/contributing/self-hosting.mdx
+  s_63d885fb8930f9::t_07e64ae44b1ac3 111
 ---
 {
   "schema_version": "authorship/3.0.0",
@@ -14,6 +16,14 @@ docker-compose.yml.example
         "tool": "codex",
         "id": "01a02023-e0d9-72c0-8c84-0435f36960e5",
         "model": "gpt-5.6-luna"
+      },
+      "human_author": "Theodoros Ploumis <me@theodorosploumis.com>"
+    },
+    "s_63d885fb8930f9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a566bc35-22d2-486c-a4fc-891f0736d705",
+        "model": "deepseek-flash"
       },
       "human_author": "Theodoros Ploumis <me@theodorosploumis.com>"
     }
