@@ -1,0 +1,26 @@
+docker-compose.yml
+  s_1657ed83a31c82::t_f1ece11c2695d6 2,8,11-142,145,147-149
+  s_1657ed83a31c82::t_529cbf51c6745b 1
+  s_1657ed83a31c82::t_9c34d3c1e479db 3-7
+  s_1657ed83a31c82::t_d73b2a2e93de79 9-10
+  s_1657ed83a31c82::t_aa8803715868a7 143-144
+  s_1657ed83a31c82::t_7f87898dbe7f28 146
+  s_1657ed83a31c82::t_f8112e08395157 150-152
+  s_1657ed83a31c82::t_c836c6c2254f56 153-183
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e21e21899aa132ab347ca8955050faf00609eb44",
+  "prompts": {},
+  "sessions": {
+    "s_1657ed83a31c82": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "2664c686-c3c4-461c-a4e7-6ea674a8b008",
+        "model": "deepseek-flash"
+      },
+      "human_author": "Theodoros Ploumis <me@theodorosploumis.com>"
+    }
+  }
+}
