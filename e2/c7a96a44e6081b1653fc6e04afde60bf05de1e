@@ -1,0 +1,23 @@
+docs/v3/contributing/self-hosting.mdx
+  s_63992005a31e92::t_0b38877274fb39 216
+docker-compose.yml.example
+  s_63992005a31e92::t_0b38877274fb39 115,139
+.env.template
+  s_63992005a31e92::t_0b38877274fb39 45,49,300,303
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "e2c7a96a44e6081b1653fc6e04afde60bf05de1e",
+  "prompts": {},
+  "sessions": {
+    "s_63992005a31e92": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a02023-e0d9-72c0-8c84-0435f36960e5",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "Theodoros Ploumis <me@theodorosploumis.com>"
+    }
+  }
+}
