@@ -1,8 +1,0 @@
-# Basic Auth protects the dashboard before requests reach OpenConcho.
-:8080 {
-	basic_auth {
-		{$OPENCONCHO_AUTH_USER} {$OPENCONCHO_AUTH_PASSWORD_HASH}
-	}
-
-	reverse_proxy openconcho:8080
-}

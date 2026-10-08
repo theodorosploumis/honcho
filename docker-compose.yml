@@ -134,8 +134,20 @@ services:
       - openconcho
     ports:
       - "127.0.0.1:${OPENCONCHO_PORT:-18080}:8080"
-    volumes:
-      - ./docker/openconcho/Caddyfile:/etc/caddy/Caddyfile:ro
+    entrypoint: ["/bin/sh"]
+    command:
+      - "-ec"
+      - |
+        cat > /tmp/Caddyfile <<'EOF'
+        :8080 {
+          basic_auth {
+            {$$OPENCONCHO_AUTH_USER} {$$OPENCONCHO_AUTH_PASSWORD_HASH}
+          }
+          reverse_proxy openconcho:8080
+        }
+        EOF
+        caddy fmt --overwrite /tmp/Caddyfile
+        exec caddy run --config /tmp/Caddyfile --adapter caddyfile
     environment:
       OPENCONCHO_AUTH_USER: ${OPENCONCHO_AUTH_USER:?Set OPENCONCHO_AUTH_USER for dashboard access}
       OPENCONCHO_AUTH_PASSWORD_HASH: ${OPENCONCHO_AUTH_PASSWORD_HASH:?Set OPENCONCHO_AUTH_PASSWORD_HASH to a Caddy bcrypt hash}
