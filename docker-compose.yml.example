@@ -108,6 +108,20 @@ services:
       start_period: 10s
     restart: unless-stopped
 
+  # OpenConcho web UI for browsing and managing this Honcho instance.
+  openconcho:
+    image: ghcr.io/offendingcommit/openconcho-web:latest
+    pull_policy: always
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:${OPENCONCHO_PORT:-18080}:8080"
+    environment:
+      OPENCONCHO_DEFAULT_HONCHO_URL: ${OPENCONCHO_DEFAULT_HONCHO_URL:-http://api:8000}
+      OPENCONCHO_UPSTREAM_ALLOWLIST: ${OPENCONCHO_UPSTREAM_ALLOWLIST:-}
+    restart: unless-stopped
+
   database:
     image: pgvector/pgvector:pg15
     restart: unless-stopped
