@@ -7,10 +7,11 @@
 #   INSTALL_LANCEDB=true docker compose up -d --build  # optional local vector store
 #
 # By default, ports are bound to 127.0.0.1 (localhost only).
-# For development, uncomment the source mounts and monitoring services below.
+# For development, uncomment the source mounts below for live reload.
 #
-# Host port defaults are shifted (API 18000, MCP 13000) to avoid ports
-# already taken on this server (8000, 3000).
+# Host port defaults are shifted (API 18000, MCP 13000, Prometheus 19090,
+# Grafana 19091) to avoid ports already taken on this server
+# (8000, 3000, 9090).
 
 services:
   api:
@@ -148,36 +149,47 @@ services:
       timeout: 5s
       retries: 5
 
-  # -- Development: monitoring stack (uncomment to enable) --
-  # prometheus:
-  #   image: prom/prometheus:v3.2.1
-  #   ports:
-  #     - "127.0.0.1:9090:9090"
-  #   volumes:
-  #     - ./docker/prometheus.yml:/etc/prometheus/prometheus.yml:ro
-  #     - prometheus-data:/prometheus
-  #   depends_on:
-  #     api:
-  #       condition: service_started
-  # grafana:
-  #   image: grafana/grafana:11.4.0
-  #   ports:
-  #     - "127.0.0.1:3000:3000"
-  #   environment:
-  #     - GF_SECURITY_ADMIN_USER=admin
-  #     - GF_SECURITY_ADMIN_PASSWORD=admin
-  #     - GF_AUTH_ANONYMOUS_ENABLED=true
-  #     - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
-  #   volumes:
-  #     - ./docker/grafana-datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml:ro
-  #   depends_on:
-  #     prometheus:
-  #       condition: service_started
+  # -- Development: monitoring stack --
+  prometheus:
+    image: prom/prometheus:v3.2.1
+    ports:
+      - "127.0.0.1:${PROMETHEUS_PORT:-19090}:9090"
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--web.config.file=/etc/prometheus/web.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.console.libraries=/usr/share/prometheus/console_libraries"
+      - "--web.console.templates=/usr/share/prometheus/consoles"
+    volumes:
+      - ./docker/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./docker/prometheus-web.yml:/etc/prometheus/web.yml:ro
+      - prometheus-data:/prometheus
+    depends_on:
+      api:
+        condition: service_started
+  grafana:
+    image: grafana/grafana:11.4.0
+    ports:
+      - "127.0.0.1:${GRAFANA_PORT:-19091}:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN_USER:-admin}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD:-admin}
+      - GF_AUTH_ANONYMOUS_ENABLED=${GRAFANA_ANONYMOUS_ENABLED:-false}
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
+      # Credentials for the provisioned Prometheus datasource
+      # ($__env{} references in docker/grafana-datasource.yml).
+      - PROMETHEUS_AUTH_USER=${PROMETHEUS_AUTH_USER:-prometheus}
+      - PROMETHEUS_AUTH_PASSWORD=${PROMETHEUS_AUTH_PASSWORD}
+    volumes:
+      - ./docker/grafana-datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml:ro
+    depends_on:
+      prometheus:
+        condition: service_started
 
 volumes:
   pgdata:
   redis-data:
   lancedb-data:
+  prometheus-data:
   # -- Development: uncomment if using source mounts --
   # venv:
-  # prometheus-data:

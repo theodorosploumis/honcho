@@ -5,5 +5,11 @@ datasources:
     type: prometheus
     access: proxy
     url: http://prometheus:9090
+    # Prometheus requires HTTP basic auth (see docker/prometheus-web.yml).
+    # Values are injected from the container environment; see .env.
+    basicAuth: true
+    basicAuthUser: $__env{PROMETHEUS_AUTH_USER}
+    secureJsonData:
+      basicAuthPassword: $__env{PROMETHEUS_AUTH_PASSWORD}
     isDefault: true
     editable: false

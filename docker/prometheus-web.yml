@@ -1,0 +1,12 @@
+# Prometheus HTTP web configuration: basic auth in front of the web UI and API
+# (loaded via --web.config.file in docker-compose.yml; re-read on every request).
+#
+# The plaintext password is in the project .env as PROMETHEUS_AUTH_PASSWORD
+# (gitignored). To rotate it:
+#   1. Update PROMETHEUS_AUTH_PASSWORD in .env
+#   2. Regenerate the bcrypt hash and replace the line below:
+#        htpasswd -nbBC 12 <user> <password>
+#   3. docker compose up -d --force-recreate prometheus grafana
+# The username must match PROMETHEUS_AUTH_USER in .env.
+basic_auth_users:
+  prometheus: $2y$12$jdRKrN8d7P.piCk862bgBePa15aDt4lnfyVXAO3W/qbyxeCts9VMy
