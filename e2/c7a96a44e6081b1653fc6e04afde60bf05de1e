@@ -1,5 +1,6 @@
 docs/v3/contributing/self-hosting.mdx
   s_63992005a31e92::t_0b38877274fb39 216
+  s_63d885fb8930f9::t_62947828f5148b 111
 docker-compose.yml.example
   s_63992005a31e92::t_0b38877274fb39 115,139
 .env.template
@@ -16,6 +17,14 @@ docker-compose.yml.example
         "tool": "codex",
         "id": "01a02023-e0d9-72c0-8c84-0435f36960e5",
         "model": "gpt-5.6-luna"
+      },
+      "human_author": "Theodoros Ploumis <me@theodorosploumis.com>"
+    },
+    "s_63d885fb8930f9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a566bc35-22d2-486c-a4fc-891f0736d705",
+        "model": "deepseek-flash"
       },
       "human_author": "Theodoros Ploumis <me@theodorosploumis.com>"
     }
