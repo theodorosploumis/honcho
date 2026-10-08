@@ -1,0 +1,23 @@
+docker-compose.yml
+  s_cb465bf8fc79b0::t_459ce704c5939e 116,126-127
+docs/v3/contributing/self-hosting.mdx
+  s_cb465bf8fc79b0::t_81bc9b815d063c 115
+docker-compose.yml.example
+  s_cb465bf8fc79b0::t_491ca1703070ef 113,123-124
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "188bc76da69c43c1840bca2cda57a9c414ae6684",
+  "prompts": {},
+  "sessions": {
+    "s_cb465bf8fc79b0": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a11bb2-2608-713d-8ca9-023851d7fc05",
+        "model": "gpt-6-luna"
+      },
+      "human_author": "Theodoros Ploumis <me@theodorosploumis.com>"
+    }
+  }
+}
