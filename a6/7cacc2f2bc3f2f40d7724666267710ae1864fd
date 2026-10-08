@@ -1,0 +1,28 @@
+docker/prometheus-web.yml
+  s_e797c5dcc9f93a::t_aa7e8f4da8c91b 1-12
+docker/grafana-datasource.yml
+  s_e797c5dcc9f93a::t_0cacc61ba3e151 8-13
+.env.template
+  s_e797c5dcc9f93a::t_9b3dbd57ad141b 282-299
+docker-compose.yml
+  s_e797c5dcc9f93a::t_2680ac641b7ed0 152-156,163-164,166-174,178,183-187
+  s_e797c5dcc9f93a::t_cebe5bf4f1dabc 157-162,165,175-177,179-182
+  s_e797c5dcc9f93a::t_9c8259f4dd8495 193
+  s_e797c5dcc9f93a::t_c842bba598dcb9 10,12-14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a67cacc2f2bc3f2f40d7724666267710ae1864fd",
+  "prompts": {},
+  "sessions": {
+    "s_e797c5dcc9f93a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9cfc414f-7f12-4635-824d-5963a6e4dfdf",
+        "model": "deepseek-flash"
+      },
+      "human_author": "Theodoros Ploumis <me@theodorosploumis.com>"
+    }
+  }
+}
