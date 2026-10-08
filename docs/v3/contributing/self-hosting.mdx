@@ -112,13 +112,7 @@ This starts six services: **api**, **deriver** (background worker), **mcp** (Str
 
 Open the OpenConcho UI at <http://127.0.0.1:18080> (or your configured `OPENCONCHO_PORT`). It is preconfigured to connect to the Compose `api` service; if Honcho API authentication is enabled, provide the appropriate API token in the UI. You can override the initial connection with `OPENCONCHO_DEFAULT_HONCHO_URL` in `.env`.
 
-The UI is fronted by a Caddy proxy with HTTP Basic Auth. Set `OPENCONCHO_AUTH_USER` and `OPENCONCHO_AUTH_PASSWORD_HASH` in `.env` or Coolify secrets before starting the stack. Generate a bcrypt password hash with:
-
-```bash
-docker run --rm caddy:2-alpine caddy hash-password --plaintext 'replace-with-a-strong-password'
-```
-
-Store only the generated hash, and do not commit credentials. In Coolify, set `OPENCONCHO_UPSTREAM_ALLOWLIST=api` (plus any other trusted hostnames, comma-separated), route the dashboard domain to the `openconcho-auth` service on port `8080`, and enable HTTPS. The allowlist is required and limits which upstreams the UI's API proxy can reach.
+OpenConcho does not provide its own login screen. Keep the UI bound to localhost for local use; for a public deployment, protect its hostname with an authenticated edge/reverse proxy such as [Cloudflare Access](https://developers.cloudflare.com/cloudflare-one/applications/configure-apps/self-hosted-apps/). In Coolify, route the dashboard domain to the `openconcho` service on port `8080` and set `OPENCONCHO_UPSTREAM_ALLOWLIST=api` (plus any other trusted hostnames, comma-separated). The required allowlist limits which upstreams the UI's API proxy can reach.
 
 Point MCP clients at `http://127.0.0.1:3000` — see [Run locally](/v3/guides/integrations/mcp#run-locally) for stdio, HTTP, and Docker.
 
