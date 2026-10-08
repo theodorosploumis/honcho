@@ -1,0 +1,31 @@
+.env.template
+  s_cb465bf8fc79b0::t_db1e9ca141b023 18-20
+  s_cb465bf8fc79b0::t_d06c561fc07c81 21-26
+docs/v3/contributing/self-hosting.mdx
+  s_cb465bf8fc79b0::t_d92522d4df0194 113-120
+  s_cb465bf8fc79b0::t_83a4065f90a74c 121
+docker-compose.yml
+  s_cb465bf8fc79b0::t_10f45b7e9dfa76 122-125,127-134,137-138,140-141
+  s_cb465bf8fc79b0::t_4de8f8b5e06669 126
+docker-compose.yml.example
+  s_cb465bf8fc79b0::t_33abcde90b1da1 123
+  s_cb465bf8fc79b0::t_9a89a6f3d9f183 112,119-122,124-131,134-135,137-138
+docker/openconcho/Caddyfile
+  s_cb465bf8fc79b0::t_0820e958b366fc 1-8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7dda6e413dbf3ffa1adbbccf6bd2da88ca551e68",
+  "prompts": {},
+  "sessions": {
+    "s_cb465bf8fc79b0": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a11bb2-2608-713d-8ca9-023851d7fc05",
+        "model": "gpt-6-luna"
+      },
+      "human_author": "Theodoros Ploumis <me@theodorosploumis.com>"
+    }
+  }
+}
